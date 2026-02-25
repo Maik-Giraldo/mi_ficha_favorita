@@ -8,5 +8,4 @@ import com.mifichafavorita.usuarios.entity.Users;
 // Repositorio para la entidad Users, extiende JpaRepository para obtener métodos CRUD automáticamente
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long>{
-    
 }
