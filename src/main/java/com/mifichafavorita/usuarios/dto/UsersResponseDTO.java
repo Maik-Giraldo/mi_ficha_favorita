@@ -11,4 +11,6 @@ public class UsersResponseDTO {
     private String email;
 
     private Long age;
+
+    private MessageResponseDTO messageResponseDTO;
 }

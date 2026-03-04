@@ -102,4 +102,16 @@ public class UsersService {
             return Optional.empty();
         }
     }
+
+    public MessageResponseDTO deleteUser(Long id) {
+        MessageResponseDTO response = new MessageResponseDTO();
+        if(usersRepository.existsById(id)) {
+            usersRepository.deleteById(id);
+            response.setMessage("Usuario eliminado correctamente");
+            return response;
+        }
+
+        response.setMessage("Este usuario no existe");
+        return response;
+    }
 }

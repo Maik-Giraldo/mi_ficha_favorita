@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,8 @@ import com.mifichafavorita.usuarios.dto.UsersResponseDTO;
 import com.mifichafavorita.usuarios.services.UsersService;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -87,7 +90,19 @@ public class UsersController {
             // Por ahora, devuelve lo que encuentre con código 302.
             return ResponseEntity.status(HttpStatus.FOUND).body(response);
         } catch (Exception e) {
+            e.printStackTrace();
             // Captura errores inesperados y responde con 404 Not Found
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MessageResponseDTO> deleteUser(@PathVariable Long id) {
+        try {
+            MessageResponseDTO response = usersService.deleteUser(id);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
