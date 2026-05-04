@@ -3,7 +3,12 @@ package com.mifichafavorita.gestionusuarios.dto;
 import lombok.Data;
 
 @Data
-public class RegisterRequestDTO {
+public class UserResponseDTO {
+    /**
+     * Id del usuario
+     */
+    private Long id;
+
     /**
      * Nombre del usuario
      */
@@ -13,11 +18,6 @@ public class RegisterRequestDTO {
      * Email del usuario
      */
     private String email;
-
-    /**
-     * Contraseña del usuario
-     */
-    private String password;
 
     /**
      * Edad del usuario
