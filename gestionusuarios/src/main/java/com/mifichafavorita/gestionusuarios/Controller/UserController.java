@@ -3,9 +3,9 @@ package com.mifichafavorita.gestionusuarios.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mifichafavorita.gestionusuarios.dto.HttpGlobalResponse;
-import com.mifichafavorita.gestionusuarios.dto.JwtDTO;
 import com.mifichafavorita.gestionusuarios.dto.UserResponseDTO;
+import com.mifichafavorita.gestionusuarios.enums.RolEnum;
+import com.mifichafavorita.gestionusuarios.security.RequireRole;
 import com.mifichafavorita.gestionusuarios.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +25,7 @@ public class UserController {
      */
     private final UserService userService;
 
+    @RequireRole(RolEnum.ADMIN)
     @GetMapping("/list-users")
     public ResponseEntity<List<UserResponseDTO>> listUsers() {
         try {
